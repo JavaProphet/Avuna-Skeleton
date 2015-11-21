@@ -27,11 +27,18 @@ size_t readLine(int fd, char* line, size_t len) {
 }
 
 size_t writeLine(int fd, char* line, size_t len) {
+	static char nl[2] = { 0x0A, 0x0D };
 	int i = 0;
 	while (i < len) {
-		int x = write(fd, line + i, len + 1 - i);
+		int x = write(fd, line + i, len - i);
 		if (x < 0) return -1;
 		i += x;
+	}
+	int i2 = 0;
+	while (i2 < 2) {
+		int y = write(fd, nl + i2, 2 - i2);
+		if (y < 0) return -1;
+		i2 += y;
 	}
 	return i;
 }

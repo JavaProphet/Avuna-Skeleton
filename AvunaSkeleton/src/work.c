@@ -57,6 +57,7 @@ void run_work(struct work_param* param) {
 			if ((re & POLLIN) == POLLIN) {
 				while (readLine(fds[i].fd, (char*) mbuf, 1024) < ((size_t) - 1)) {
 					printf("%s\n", mbuf);
+					writeLine(fds[i].fd, (char*) mbuf, strlen((char*) mbuf));
 				}
 			}
 			if ((re & POLLERR) == POLLERR) {
