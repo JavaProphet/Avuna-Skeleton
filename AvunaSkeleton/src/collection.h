@@ -5,8 +5,8 @@
  *      Author: root
  */
 
-#ifndef QUEUE_H_
-#define QUEUE_H_
+#ifndef COLLECTION_H_
+#define COLLECTION_H_
 
 #include <pthread.h>
 
@@ -17,7 +17,7 @@ struct collection {
 		size_t dsize;
 		size_t rc;
 		void** data;
-		pthread_mutex_t data_mutex;
+		pthread_rwlock_t data_mutex;
 };
 
 struct collection* new_collection(size_t capacity, size_t data_size);
@@ -28,4 +28,4 @@ int add_collection(struct collection* coll, void* data);
 
 int rem_collection(struct collection* coll, void* data);
 
-#endif /* QUEUE_H_ */
+#endif /* COLLECTION_H_ */

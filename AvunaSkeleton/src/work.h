@@ -10,10 +10,14 @@
 
 #include "collection.h"
 #include "accept.h"
+#include "log.h"
 
 struct work_param {
 		struct collection* conns;
 		int pipes[2];
+		struct logsess* logsess;
+		int i;
+		int sport;
 };
 
 void run_work(struct work_param* param);

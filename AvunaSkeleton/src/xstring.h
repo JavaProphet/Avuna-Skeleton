@@ -16,6 +16,18 @@ int streq(const char* str1, const char* str2);
 
 int streq_nocase(const char* str1, const char* str2);
 
+int startsWith(const char* str, const char* with);
+
+int startsWith_nocase(const char* str, const char* with);
+
+int endsWith(const char* str, const char* with);
+
+int endsWith_nocase(const char* str, const char* with);
+
+int contains(const char* str, const char* with);
+
+int contains_nocase(const char* str, const char* with);
+
 char* toLowerCase(char* str);
 
 char* toUpperCase(char* str);

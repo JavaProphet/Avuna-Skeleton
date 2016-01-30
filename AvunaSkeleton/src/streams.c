@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-size_t readLine(int fd, char* line, size_t len) {
+ssize_t readLine(int fd, char* line, size_t len) {
 	if (len >= 1) line[0] = 0;
 	char b = 0;
 	int s = 0;
@@ -18,6 +18,9 @@ size_t readLine(int fd, char* line, size_t len) {
 		if ((s == 0 && i == 0) || s < 0) {
 			return -1;
 		}
+		if (s == 0) {
+			break;
+		}
 		if (s > 0 && b != 13 && b != 10) {
 			line[i++] = b;
 		}
@@ -26,7 +29,7 @@ size_t readLine(int fd, char* line, size_t len) {
 	return i;
 }
 
-size_t writeLine(int fd, char* line, size_t len) {
+ssize_t writeLine(int fd, char* line, size_t len) {
 	static char nl[2] = { 0x0A, 0x0D };
 	int i = 0;
 	while (i < len) {
