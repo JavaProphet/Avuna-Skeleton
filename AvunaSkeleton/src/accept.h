@@ -33,7 +33,6 @@ struct conn {
 		size_t readBuffer_checked;
 		unsigned char* writeBuffer;
 		size_t writeBuffer_size;
-		size_t postLeft;
 		int tls;
 		int handshaked;
 		gnutls_session_t session;

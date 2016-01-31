@@ -38,7 +38,6 @@ void run_accept(struct accept_param* param) {
 		c->readBuffer_checked = 0;
 		c->writeBuffer = NULL;
 		c->writeBuffer_size = 0;
-		c->postLeft = 0;
 		c->handshaked = 0;
 		if (param->cert != NULL) {
 			gnutls_init(&c->session, GNUTLS_SERVER | GNUTLS_NONBLOCK);
