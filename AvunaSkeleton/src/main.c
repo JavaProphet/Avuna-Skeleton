@@ -205,13 +205,6 @@ int main(int argc, char* argv[]) {
 			continue;
 		}
 		int mc = atoi(mcc);
-		const char* mpc = getConfigValue(serv, "max-post");
-		if (!strisunum(mpc)) {
-			if (serv->id != NULL) errlog(delog, "Invalid max-post for server: %s", serv->id);
-			else errlog(delog, "Invalid max-post for server.");
-			continue;
-		}
-		long int mp = atol(mpc);
 		int sfd = socket(namespace, SOCK_STREAM, 0);
 		if (sfd < 0) {
 			if (serv->id != NULL) errlog(delog, "Error creating socket for server: %s, %s", serv->id, strerror(errno));
