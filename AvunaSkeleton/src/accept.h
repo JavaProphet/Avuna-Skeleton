@@ -13,6 +13,7 @@
 #include <sys/socket.h>
 #include "work.h"
 #include <gnutls/gnutls.h>
+#include <netinet/ip6.h>
 
 struct accept_param {
 		int server_fd;
@@ -26,7 +27,7 @@ struct accept_param {
 
 struct conn {
 		int fd;
-		struct sockaddr addr;
+		struct sockaddr_in6 addr;
 		socklen_t addrlen;
 		unsigned char* readBuffer;
 		size_t readBuffer_size;
