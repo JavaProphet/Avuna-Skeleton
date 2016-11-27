@@ -91,21 +91,26 @@ void run_work(struct work_param* param) {
 			struct conn* conn = conns[i];
 			if ((re & POLLERR) == POLLERR) {
 				//printf("POLLERR in worker poll! This is bad!\n");
+				closeConn(param, conn);
+				conn = NULL;
 				goto cont;
 			}
 			if ((re & POLLHUP) == POLLHUP) {
 				closeConn(param, conn);
+				conn = NULL;
 				goto cont;
 			}
 			if ((re & POLLNVAL) == POLLNVAL) {
 				printf("Invalid FD in worker poll! This is bad!\n");
 				closeConn(param, conn);
+				conn = NULL;
 				goto cont;
 			}
 			if (conn->tls && !conn->handshaked) {
 				int r = gnutls_handshake(conn->session);
 				if (gnutls_error_is_fatal(r)) {
 					closeConn(param, conn);
+					conn = NULL;
 					goto cont;
 				} else if (r == GNUTLS_E_SUCCESS) {
 					conn->handshaked = 1;
