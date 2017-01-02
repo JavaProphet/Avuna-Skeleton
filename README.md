@@ -1,2 +1,2 @@
 # Avuna-Skeleton
-A base for all daemons to fork from.
+A base for all Avuna daemons to fork from. Written by Max Bruce.
